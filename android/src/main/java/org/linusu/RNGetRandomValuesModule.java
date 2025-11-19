@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import java.security.SecureRandom;
 
 public class RNGetRandomValuesModule extends NativeRNGetRandomValuesSpec {
+  private static final SecureRandom SECURE_RANDOM = new SecureRandom();
   public RNGetRandomValuesModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
@@ -16,7 +17,7 @@ public class RNGetRandomValuesModule extends NativeRNGetRandomValuesSpec {
     byte[] data = new byte[(int)byteLength];
     SecureRandom random = new SecureRandom();
 
-    random.nextBytes(data);
+    SECURE_RANDOM.nextBytes(data);
 
     return Base64.encodeToString(data, Base64.NO_WRAP);
   }
